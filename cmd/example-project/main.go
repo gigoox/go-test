@@ -5,7 +5,8 @@ import (
 	"bitbucket.org/falabellafif/ExampleProject/internal/controller"
 	"bitbucket.org/falabellafif/ExampleProject/internal/handler"
 	"bitbucket.org/falabellafif/ExampleProject/internal/repository"
-	"github.com/go-chi/chi"
+	"bitbucket.org/falabellafif/ExampleProject/internal/route"
+	"github.com/gin-gonic/gin"
 	"go.uber.org/dig"
 	"gopkg.in/go-playground/validator.v9"
 )
@@ -42,7 +43,10 @@ func createContainer() (*dig.Container) {
 	if err := container.Provide(NewServer); err != nil {
 		panic(err)
 	}
-	if err := container.Provide(chi.NewRouter); err != nil {
+	if err := container.Provide(gin.Default); err != nil {
+		panic(err)
+	}
+	if err := container.Provide(route.NewUserAccount); err != nil {
 		panic(err)
 	}
 	return container

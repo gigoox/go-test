@@ -11,7 +11,6 @@ type UserAccount struct {
 }
 
 func (u *UserAccount) RegisterUser(accounts *model.UserAccounts) (*model.UserAccounts, error){
-
 	if userAccountExist, err := u.repository.FindUserAccountByUserName(accounts); err != nil {
 		return nil, err
 	} else if userAccountExist{

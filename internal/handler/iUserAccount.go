@@ -1,7 +1,9 @@
 package handler
 
-import "net/http"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 type IUserAccount interface {
-	RegisterUserAccount() func(w http.ResponseWriter, r *http.Request)
+	RegisterUserAccount(c *gin.Context)
 }

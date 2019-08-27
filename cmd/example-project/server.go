@@ -1,24 +1,27 @@
 package main
 
 import (
-	"bitbucket.org/falabellafif/ExampleProject/internal/handler"
-	"github.com/go-chi/chi"
-	"net/http"
+	"bitbucket.org/falabellafif/ExampleProject/internal/route"
+	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 type Server struct {
-	router *chi.Mux
-	handler handler.IUserAccount
+	engine *gin.Engine
+	route route.IUserAccount
 }
 
 func (s *Server) StartServer(){
-	s.router.Post("/test", s.handler.RegisterUserAccount())
-	http.ListenAndServe(":3000", s.router)
+	s.route.SetRoute()
+	if err := s.engine.Run(":9090"); err != nil {
+		panic(err)
+	}
+	fmt.Print("Servidor levantado en el puerto 9090")
 }
 
-func NewServer(r *chi.Mux, h *handler.UserAccount) *Server{
+func NewServer(e *gin.Engine, r *route.UserAccount) *Server{
 	return &Server{
-		router:r,
-		handler: h,
+		engine:e,
+		route:r,
 	}
 }
