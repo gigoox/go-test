@@ -14,7 +14,9 @@ import (
 func main()  {
 	container:= createContainer()
 	if err := container.Invoke(func(server *Server){
-		server.StartServer()
+		select {
+
+		}
 	}); err != nil {
 		panic(err)
 	}
