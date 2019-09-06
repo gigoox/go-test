@@ -1,4 +1,4 @@
-module bitbucket.org/falabellafif/ExampleProject
+module github.com/gigoox/go-test
 
 go 1.12
 
